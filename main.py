@@ -1,39 +1,13 @@
 from fastapi import FastAPI, Body
 import uvicorn
 from pydantic import EmailStr
+from items_views import router as items_router
+from users.views import router as users_router
 
 
 app = FastAPI(title="Magic API", version="1.0.0", description="Testing API of FastAPI :)")
-
-
-@app.get("/")
-def hello_world():
-    return {
-        "message": "Hello World"
-    }
-
-
-@app.get("/hello")
-def hello(name: str):
-    name = name.strip().title()
-    return {
-        "message": f"Hello {name}"
-    }
-
-
-@app.get("/items/{item_id}")
-def get_item(item_id: int):
-    return {
-        "item_id": item_id
-    }
-
-
-@app.post("/users")
-def create_user(email: EmailStr = Body()):
-    return {
-        "message": "Success",
-        "email": email
-    }
+app.include_router(items_router)
+app.include_router(users_router)
 
 
 if __name__ == "__main__":
