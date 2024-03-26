@@ -1,6 +1,5 @@
-from fastapi import FastAPI, Body
+from fastapi import FastAPI
 import uvicorn
-from pydantic import EmailStr
 from items_views import router as items_router
 from users.views import router as users_router
 
