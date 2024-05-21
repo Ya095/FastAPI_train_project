@@ -3,7 +3,7 @@ from core.models.base import Base
 
 
 class Product(Base):
-    __tablename__ = "product"
+    # __tablename__ = "product"
 
     name: Mapped[str]
     price: Mapped[int]
