@@ -26,14 +26,14 @@ async def crete_product(session: AsyncSession, product_id: ProductCreate) -> Pro
     return product
 
 
-# Полное обновление объекта (метод put)
+# Полное обновление объекта (метод put), частичное - patch
 async def update_product(
         session: AsyncSession,
         product: Product,
         product_update: ProductUpdate | ProductUpdatePartial,
         partial: bool = False
 ) -> Product:
-    for key, value in product_update.model_dump(exclude_unset=partial).items():  #  model_dump() - получить словарь данных
+    for key, value in product_update.model_dump(exclude_unset=partial).items():  # model_dump() - получить словарь данных
         setattr(product, key, value)
 
     await session.commit()
