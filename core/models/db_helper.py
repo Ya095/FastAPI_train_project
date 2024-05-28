@@ -35,4 +35,7 @@ class DataBaseHelper:
             await session.remove()
 
 
-db_helper = DataBaseHelper(url=settings.db_url, echo=settings.db_echo)
+db_helper = DataBaseHelper(
+    url=settings.db.url,
+    echo=settings.db.echo
+)
