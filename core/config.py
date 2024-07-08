@@ -9,7 +9,7 @@ DB_PATH = BASE_DIR / "db.sqlite3"
 
 class DbSettings(BaseModel):
     url: str = f"sqlite+aiosqlite:///{DB_PATH}"
-    echo: bool = True
+    echo: bool = True  # Заменить на false перед выкатом
 
 
 class Settings(BaseSettings):
