@@ -1,3 +1,4 @@
+import uuid
 import bcrypt
 import jwt
 from datetime import timedelta, datetime
@@ -14,13 +15,13 @@ def encode_jwt(
     to_encode = payload.copy()
     now = datetime.utcnow()
     if expire_timedelta:
-        expire = now + expire_minutes
+        expire = now + expire_timedelta
     else:
         expire = now + timedelta(minutes=expire_minutes)
 
     to_encode.update(
         exp=expire,
-        iat=now
+        iat=now,
     )
 
     encoded = jwt.encode(to_encode, private_key, algorithm=algorithm)
