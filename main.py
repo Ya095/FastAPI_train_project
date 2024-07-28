@@ -31,7 +31,7 @@ app.include_router(router_v1, prefix=settings.api_v1_prefix)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost:8000"
+        "http://localhost:5170"  # адрес фронта
     ],
     allow_credentials=True,
     allow_methods=["*"],
