@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 import uvicorn
 from items_views import router as items_router
@@ -20,9 +21,22 @@ app = FastAPI(
     version="1.0.0",
     description="Testing API of FastAPI :)"
 )
+
 app.include_router(items_router)
 app.include_router(users_router)
 app.include_router(router_v1, prefix=settings.api_v1_prefix)
+
+
+# add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:8000"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 if __name__ == "__main__":
